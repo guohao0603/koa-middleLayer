@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let url = 'http://localhost:8899';
+    /**
+     * GET 请求 
+     */
+    fetch(url + '/api/user/userInfo?page=1&total=10')
+    .then((res)=>{
+        return res.json()
+    }).then ((data)=>{
+        console.log(data)
+    })
+
+     /**
+     * POST 请求 
+     */
+    fetch(url + '/api/user/login',{
+        method: 'POST',
+        body: JSON.stringify({username:'lily',password:'123456'}),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'auth-token': 'xxx'
+        })
+    })
+    .then(res => res.json())
+    .catch(error => console.error('Error:',error))
+    .then(data => console.log('success:',data))
+
+</script>
+</html>
